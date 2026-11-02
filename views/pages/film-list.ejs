@@ -1,0 +1,68 @@
+<%- include('../partial/header', { pageTitle: pageTitle }) %>
+
+    <div class="card card--wide">
+        <div class="card__head">
+            <h2>Katalog Film</h2>
+            <a href="/film/tambah" class="btn btn--primary">+ Tambah Film Baru</a>
+        </div>
+
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Judul</th>
+                        <th>Sutradara</th>
+                        <th>Genre</th>
+                        <th>Tahun</th>
+                        <th>Rating</th>
+                        <th>Sinopsis</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (filmList.length===0) { %>
+                        <tr>
+                            <td colspan="8" class="table__empty">Belum ada data film di basis data.</td>
+                        </tr>
+                        <% } else { %>
+                            <% filmList.forEach(item=> { %>
+                                <tr>
+                                    <td>
+                                        <%= item.id %>
+                                    </td>
+                                    <td><strong>
+                                            <%= item.judul %>
+                                        </strong></td>
+                                    <td>
+                                        <%= item.sutradara %>
+                                    </td>
+                                    <td><span class="badge">
+                                            <%= item.genre %>
+                                        </span></td>
+                                    <td>
+                                        <%= item.tahun_rilis %>
+                                    </td>
+                                    <td>⭐ <%= Number(item.rating).toLocaleString('id-ID', { minimumFractionDigits: 1,
+                                            maximumFractionDigits: 1 }) %>
+                                    </td>
+                                    <td class="table__sinopsis">
+                                        <%= item.sinopsis.length> 80 ? item.sinopsis.substring(0, 80) + '...' :
+                                            item.sinopsis %>
+                                    </td>
+                                    <td class="table__aksi">
+                                        <a href="/film/edit/<%= item.id %>" class="btn btn--sm btn--edit">Edit</a>
+                                        <form action="/film/hapus/<%= item.id %>" method="POST" class="form-inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus film ini?');">
+                                            <button type="submit" class="btn btn--sm btn--hapus">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../partial/footer') %>

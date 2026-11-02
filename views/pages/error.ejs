@@ -1,0 +1,24 @@
+<%- include('../partial/header', { pageTitle: pageTitle }) %>
+
+    <div class="card card--form error-page">
+        <div class="error-page__code">
+            <%= statusCode %>
+        </div>
+        <h2 class="error-page__title">
+            <%= judul %>
+        </h2>
+        <p class="error-page__message">
+            <%= pesan %>
+        </p>
+
+        <% if (typeof detail !=='undefined' && detail) { %>
+            <pre class="error-page__detail"><%= detail %></pre>
+            <% } %>
+
+                <div class="error-page__actions">
+                    <a href="javascript:history.back()" class="error-page__link">&larr; Kembali</a>
+                    <a href="/film" class="btn btn--primary">Ke Katalog Film</a>
+                </div>
+    </div>
+
+    <%- include('../partial/footer') %>

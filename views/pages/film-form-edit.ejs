@@ -1,0 +1,49 @@
+<%- include('../partial/header', { pageTitle: pageTitle }) %>
+
+    <div class="card card--form">
+        <h2>Edit Data Film</h2>
+        <form action="/film/edit/<%= film.id %>" method="POST">
+            <div class="form-group">
+                <label for="judul">Judul Film:</label>
+                <input type="text" id="judul" name="judul" maxlength="150" required value="<%= film.judul %>">
+            </div>
+
+            <div class="form-group">
+                <label for="sutradara">Sutradara:</label>
+                <input type="text" id="sutradara" name="sutradara" maxlength="100" required
+                    value="<%= film.sutradara %>">
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre" required>
+                    <% genreList.forEach(g=> { %>
+                        <option value="<%= g %>" <%=film.genre===g ? 'selected' : '' %>><%= g %>
+                        </option>
+                        <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tahun_rilis">Tahun Rilis:</label>
+                <input type="number" id="tahun_rilis" name="tahun_rilis" min="1888" step="1" required
+                    value="<%= film.tahun_rilis %>">
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating (0 - 10):</label>
+                <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" required
+                    value="<%= film.rating %>">
+            </div>
+
+            <div class="form-group">
+                <label for="sinopsis">Sinopsis:</label>
+                <textarea id="sinopsis" name="sinopsis" rows="4" required><%= film.sinopsis %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Perbarui</button>
+            <a href="/film" class="link-batal">Batal</a>
+        </form>
+    </div>
+
+    <%- include('../partial/footer') %>

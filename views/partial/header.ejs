@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= typeof pageTitle !=='undefined' ? pageTitle + ' | Katalog Film' : 'Katalog Film' %>
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="/film" class="navbar__brand">Amba<span>Flix</span></a>
+        <nav class="navbar__menu">
+            <a href="/film">Daftar Film</a>
+            <a href="/film/tambah">Tambah Film</a>
+        </nav>
+    </header>
+    <main class="container">
